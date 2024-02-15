@@ -31,9 +31,9 @@ class AppFlowyBoardConfig {
   final EdgeInsets groupBodyPadding;
   final EdgeInsets groupFooterPadding;
   final bool stretchGroupHeight;
-
   // card
   final EdgeInsets cardMargin;
+  final List<BoxShadow>? boxShadow;
 
   const AppFlowyBoardConfig({
     this.boardCornerRadius = 6.0,
@@ -45,6 +45,7 @@ class AppFlowyBoardConfig {
     this.groupFooterPadding = const EdgeInsets.symmetric(horizontal: 12),
     this.stretchGroupHeight = true,
     this.cardMargin = const EdgeInsets.symmetric(horizontal: 3, vertical: 4),
+    this.boxShadow,
   });
 }
 
@@ -303,6 +304,7 @@ class _AppFlowyBoardContentState extends State<_AppFlowyBoardContent> {
                       dragTargetKeys: widget.boardState,
                       reorderFlexAction: reorderFlexAction,
                       stretchGroupHeight: widget.config.stretchGroupHeight,
+                      boxShadow: widget.config.boxShadow,
                       groupWidth: constraints.maxWidth,
                     ),
                   ),

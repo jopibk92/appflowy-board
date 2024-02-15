@@ -98,6 +98,8 @@ class AppFlowyBoardGroup extends StatefulWidget {
 
   final double groupWidth;
 
+  final List<BoxShadow>? boxShadow;
+
   const AppFlowyBoardGroup({
     Key? key,
     this.headerBuilder,
@@ -118,6 +120,7 @@ class AppFlowyBoardGroup extends StatefulWidget {
     this.cornerRadius = 0.0,
     this.backgroundColor = Colors.transparent,
     this.stretchGroupHeight = true,
+    this.boxShadow,
   })  : config = const ReorderFlexConfig(),
         super(key: key);
 
@@ -188,6 +191,7 @@ class _AppFlowyBoardGroupState extends State<AppFlowyBoardGroup> {
           margin: widget.margin,
           clipBehavior: Clip.hardEdge,
           decoration: BoxDecoration(
+            boxShadow: widget.boxShadow,
             color: widget.backgroundColor,
             borderRadius: BorderRadius.circular(widget.cornerRadius),
           ),
