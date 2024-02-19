@@ -206,9 +206,13 @@ class AppFlowyBoardController extends ChangeNotifier
     getGroupController(groupId)?.insert(index, item);
   }
 
-  void setGroupDraggability(bool groupDragging, itemDragging) {
+  void setGroupDraggability(bool groupDragging, itemDragging, List<String> nonDraggableGroups) {
     for (final groupController in _groupControllers.values) {
-      groupController.setDraggability(groupDragging, itemDragging);
+      if (nonDraggableGroups.contains(groupController.groupData.id)) {
+        groupController.setDraggability(false, itemDragging);
+      } else {
+        groupController.setDraggability(groupDragging, itemDragging);
+      }
     }
     notifyListeners();
   }
