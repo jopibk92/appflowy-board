@@ -23,7 +23,7 @@ abstract class ReoderFlexDataSource {
   String get identifier;
 
   /// The number of [ReoderFlexItem]s will be displayed in the [ReorderFlex].
-  UnmodifiableListView<ReoderFlexItem> get items;
+  List<ReoderFlexItem> get items;
 }
 
 /// Each item displayed in the [ReorderFlex] required to implement the [ReoderFlexItem].

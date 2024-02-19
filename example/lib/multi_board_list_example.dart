@@ -27,11 +27,10 @@ class _MultiBoardListExampleState extends State<MultiBoardListExample> {
   void initState() {
     boardController = AppFlowyBoardScrollController();
     final group1 = AppFlowyGroupData(id: "To Do", name: "To Do", items: [
-      TextItem("Card 1", 12),
-      TextItem("Card 2", 21),
-      RichTextItem(title: "Card 3", subtitle: 'Aug 1, 2020 4:05 PM'),
-      TextItem("Card 4", 12),
-      TextItem("Card 5", 12),
+      TextItem("Card 1", 1),
+      TextItem("Card 2", 0),
+      TextItem("Card 4", 3),
+      TextItem("Card 5", 2),
     ]);
 
     final group2 = AppFlowyGroupData(
@@ -70,6 +69,9 @@ class _MultiBoardListExampleState extends State<MultiBoardListExample> {
         ]);
 
     controller.addGroup(group1);
+    group1.items.forEach((element) {
+      print(element.position);
+    });
     controller.addGroup(group2);
     controller.addGroup(group3);
     controller.addGroup(group4);
@@ -197,6 +199,8 @@ class TextItem extends AppFlowyGroupItem {
 
   TextItem(this.s, this.pos);
 
+  @override
+  int get position => pos;
 
   @override
   String get id => s;

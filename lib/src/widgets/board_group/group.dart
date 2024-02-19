@@ -48,7 +48,7 @@ abstract class AppFlowyGroupDataDataSource extends ReoderFlexDataSource {
   String get identifier => groupData.id;
 
   @override
-  UnmodifiableListView<AppFlowyGroupItem> get items => groupData.items;
+  List<AppFlowyGroupItem> get items => groupData.items;
 
   void debugPrint() {
     String msg = '[$AppFlowyGroupDataDataSource] $groupData data: ';
