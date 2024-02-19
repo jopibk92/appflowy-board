@@ -207,7 +207,8 @@ class AppFlowyGroupData<CustomData> extends ReoderFlexItem with EquatableMixin {
         );
 
   /// Returns the readonly List<AppFlowyGroupItem>
-  List<AppFlowyGroupItem> get items => [..._items];
+  //List<AppFlowyGroupItem> get items => [..._items];
+  List<AppFlowyGroupItem> get items => _items;
 
   @override
   List<Object?> get props => [id, ..._items];

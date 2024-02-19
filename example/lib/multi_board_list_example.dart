@@ -72,6 +72,10 @@ class _MultiBoardListExampleState extends State<MultiBoardListExample> {
     group1.items.forEach((element) {
       print(element.position);
     });
+    group1.items.sort((a, b) => a.position.compareTo(b.position));
+    group1.items.forEach((element) {
+       print(element.position);
+    });
     controller.addGroup(group2);
     controller.addGroup(group3);
     controller.addGroup(group4);
