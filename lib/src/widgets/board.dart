@@ -22,6 +22,7 @@ class AppFlowyBoardScrollController {
 class AppFlowyBoardConfig {
   // board
   final double boardCornerRadius;
+  final EdgeInsets edgeInsets;
 
   // group
   final Color groupBackgroundColor;
@@ -39,6 +40,7 @@ class AppFlowyBoardConfig {
     this.boardCornerRadius = 6.0,
     this.groupCornerRadius = 6.0,
     this.groupBackgroundColor = Colors.transparent,
+    this.edgeInsets = const EdgeInsets.all(0),
     this.groupMargin = const EdgeInsets.symmetric(horizontal: 8),
     this.groupHeaderPadding = const EdgeInsets.symmetric(horizontal: 16),
     this.groupBodyPadding = const EdgeInsets.symmetric(horizontal: 12),
@@ -217,35 +219,38 @@ class _AppFlowyBoardContentState extends State<_AppFlowyBoardContent> {
     super.initState();
     _overlayEntry = BoardOverlayEntry(
       builder: (BuildContext context) {
-        return Stack(
-          alignment: AlignmentDirectional.topStart,
-          children: [
-            if (widget.background != null)
-              Container(
-                clipBehavior: Clip.hardEdge,
-                decoration: BoxDecoration(
-                  borderRadius:
-                      BorderRadius.circular(widget.config.boardCornerRadius),
+        return Padding(
+          padding: widget.config.edgeInsets,
+          child: Stack(
+            alignment: AlignmentDirectional.topStart,
+            children: [
+              if (widget.background != null)
+                Container(
+                  clipBehavior: Clip.hardEdge,
+                  decoration: BoxDecoration(
+                    borderRadius:
+                        BorderRadius.circular(widget.config.boardCornerRadius),
+                  ),
+                  child: widget.background,
                 ),
-                child: widget.background,
+              ReorderFlex(
+                config: widget.reorderFlexConfig,
+                scrollController: widget.scrollController,
+                onReorder: widget.onReorder,
+                dataSource: widget.dataController,
+                interceptor: OverlappingDragTargetInterceptor(
+                  reorderFlexId: widget.dataController.identifier,
+                  acceptedReorderFlexId: widget.dataController.groupIds,
+                  delegate: widget.delegate,
+                  columnsState: widget.boardState,
+                ),
+                leading: widget.leading,
+                trailing: widget.trailing,
+                groupWidth: widget.groupConstraints.maxWidth,
+                children: _buildColumns(),
               ),
-            ReorderFlex(
-              config: widget.reorderFlexConfig,
-              scrollController: widget.scrollController,
-              onReorder: widget.onReorder,
-              dataSource: widget.dataController,
-              interceptor: OverlappingDragTargetInterceptor(
-                reorderFlexId: widget.dataController.identifier,
-                acceptedReorderFlexId: widget.dataController.groupIds,
-                delegate: widget.delegate,
-                columnsState: widget.boardState,
-              ),
-              leading: widget.leading,
-              trailing: widget.trailing,
-              groupWidth: widget.groupConstraints.maxWidth,
-              children: _buildColumns(),
-            ),
-          ],
+            ],
+          ),
         );
       },
       opaque: false,

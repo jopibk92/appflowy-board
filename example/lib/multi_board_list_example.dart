@@ -69,13 +69,6 @@ class _MultiBoardListExampleState extends State<MultiBoardListExample> {
         ]);
 
     controller.addGroup(group1);
-    group1.items.forEach((element) {
-      print(element.position);
-    });
-    group1.items.sort((a, b) => a.position.compareTo(b.position));
-    group1.items.forEach((element) {
-       print(element.position);
-    });
     controller.addGroup(group2);
     controller.addGroup(group3);
     controller.addGroup(group4);
@@ -87,8 +80,10 @@ class _MultiBoardListExampleState extends State<MultiBoardListExample> {
   @override
   Widget build(BuildContext context) {
     final config = AppFlowyBoardConfig(
+      boxShadow: [BoxShadow(color: Colors.red, spreadRadius: 1)],
       groupBackgroundColor: HexColor.fromHex('#F7F8FC'),
       stretchGroupHeight: false,
+      edgeInsets: EdgeInsets.all(10)
     );
     return AppFlowyBoard(
         controller: controller,

@@ -60,15 +60,12 @@ class AppFlowyBoardController extends ChangeNotifier
   final OnMoveGroupItemToGroup? onMoveGroupItemToGroup;
 
   /// Returns the unmodifiable list of [AppFlowyGroupData]
-  UnmodifiableListView<AppFlowyGroupData> get groupDatas =>
-      UnmodifiableListView(_groupDatas);
+  UnmodifiableListView<AppFlowyGroupData> get groupDatas => UnmodifiableListView(_groupDatas);
 
   /// Returns list of group id
-  List<String> get groupIds =>
-      _groupDatas.map((groupData) => groupData.id).toList();
+  List<String> get groupIds => _groupDatas.map((groupData) => groupData.id).toList();
 
-  final LinkedHashMap<String, AppFlowyGroupController> _groupControllers =
-      LinkedHashMap();
+  final LinkedHashMap<String, AppFlowyGroupController> _groupControllers = LinkedHashMap();
 
   AppFlowyBoardController({
     this.onMoveGroup,
@@ -93,8 +90,7 @@ class AppFlowyBoardController extends ChangeNotifier
   ///
   /// If you don't want to notify the listener after inserting the new group, the
   /// [notify] should set to false. Default value is true.
-  void insertGroup(int index, AppFlowyGroupData groupData,
-      {bool notify = true}) {
+  void insertGroup(int index, AppFlowyGroupData groupData, {bool notify = true}) {
     if (_groupControllers[groupData.id] != null) return;
 
     final controller = AppFlowyGroupController(groupData: groupData);
@@ -122,8 +118,7 @@ class AppFlowyBoardController extends ChangeNotifier
   void removeGroup(String groupId, {bool notify = true}) {
     final index = _groupDatas.indexWhere((group) => group.id == groupId);
     if (index == -1) {
-      Log.warn(
-          'Try to remove Group:[$groupId] failed. Group:[$groupId] not exist');
+      Log.warn('Try to remove Group:[$groupId] failed. Group:[$groupId] not exist');
     }
 
     if (index != -1) {
@@ -216,6 +211,7 @@ class AppFlowyBoardController extends ChangeNotifier
     }
     notifyListeners();
   }
+
   /// Removes the item with id [itemId] from the group
   ///
   /// It will do nothing if the group with id [groupId] is not exist
@@ -280,8 +276,7 @@ class AppFlowyBoardController extends ChangeNotifier
   String get identifier => '$AppFlowyBoardController';
 
   @override
-  UnmodifiableListView<ReoderFlexItem> get items =>
-      UnmodifiableListView(_groupDatas);
+  UnmodifiableListView<ReoderFlexItem> get items => UnmodifiableListView(_groupDatas);
 
   @override
   @protected
@@ -310,8 +305,7 @@ class AppFlowyBoardController extends ChangeNotifier
 
     if (index != -1) {
       if (index != newIndex) {
-        Log.trace(
-            '[$BoardPhantomController] update $groupId:$index to $groupId:$newIndex');
+        Log.trace('[$BoardPhantomController] update $groupId:$index to $groupId:$newIndex');
         final item = groupController.removeAt(index, notify: false);
         if (item != null) {
           groupController.insert(newIndex, item, notify: false);
