@@ -27,18 +27,18 @@ class _MultiBoardListExampleState extends State<MultiBoardListExample> {
   void initState() {
     boardController = AppFlowyBoardScrollController();
     final group1 = AppFlowyGroupData(id: "To Do", name: "To Do", items: [
-      TextItem("Card 1"),
-      TextItem("Card 2"),
+      TextItem("Card 1", 12),
+      TextItem("Card 2", 21),
       RichTextItem(title: "Card 3", subtitle: 'Aug 1, 2020 4:05 PM'),
-      TextItem("Card 4"),
-      TextItem("Card 5"),
+      TextItem("Card 4", 12),
+      TextItem("Card 5", 12),
     ]);
 
     final group2 = AppFlowyGroupData(
       id: "In Progress",
       name: "In Progress",
       items: <AppFlowyGroupItem>[
-        TextItem("Card 6"),
+        TextItem("Card 6", 12),
         RichTextItem(title: "Card 7", subtitle: 'Aug 1, 2020 4:05 PM'),
         RichTextItem(title: "Card 8", subtitle: 'Aug 1, 2020 4:05 PM'),
       ],
@@ -48,25 +48,25 @@ class _MultiBoardListExampleState extends State<MultiBoardListExample> {
         id: "Pending",
         name: "Pending",
         items: <AppFlowyGroupItem>[
-          TextItem("Card 9"),
+          TextItem("Card 9", 12),
           RichTextItem(title: "Card 10", subtitle: 'Aug 1, 2020 4:05 PM'),
-          TextItem("Card 11"),
-          TextItem("Card 12"),
+          TextItem("Card 11", 12),
+          TextItem("Card 12", 12),
         ]);
     final group4 = AppFlowyGroupData(
         id: "Canceled",
         name: "Canceled",
         items: <AppFlowyGroupItem>[
-          TextItem("Card 13"),
-          TextItem("Card 14"),
-          TextItem("Card 15"),
+          TextItem("Card 13", 12),
+          TextItem("Card 14", 12),
+          TextItem("Card 15", 12),
         ]);
     final group5 = AppFlowyGroupData(
         id: "Urgent",
         name: "Urgent",
         items: <AppFlowyGroupItem>[
-          TextItem("Card 14"),
-          TextItem("Card 15"),
+          TextItem("Card 14", 12),
+          TextItem("Card 15", 12),
         ]);
 
     controller.addGroup(group1);
@@ -193,8 +193,10 @@ class _RichTextCardState extends State<RichTextCard> {
 
 class TextItem extends AppFlowyGroupItem {
   final String s;
+  final int pos;
 
-  TextItem(this.s);
+  TextItem(this.s, this.pos);
+
 
   @override
   String get id => s;

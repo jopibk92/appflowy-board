@@ -13,6 +13,8 @@ typedef IsDraggable = bool;
 abstract class AppFlowyGroupItem extends ReoderFlexItem {
   bool get isPhantom => false;
 
+  late int position;
+
   @override
   String toString() => id;
 }
