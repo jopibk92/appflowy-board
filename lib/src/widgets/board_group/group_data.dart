@@ -173,6 +173,15 @@ class AppFlowyGroupController extends ChangeNotifier with EquatableMixin {
         -1;
   }
 
+  void setDraggability(bool groupDragging, itemDragging) {
+    groupData.draggable = groupDragging;
+
+    for (final item in groupData._items) {
+      item.draggable = itemDragging;
+    }
+    _notify();
+  }
+
   void enableDragging(bool isEnable) {
     groupData.draggable = isEnable;
 
@@ -206,8 +215,6 @@ class AppFlowyGroupData<CustomData> extends ReoderFlexItem with EquatableMixin {
           groupName: name,
         );
 
-  /// Returns the readonly List<AppFlowyGroupItem>
-  //List<AppFlowyGroupItem> get items => [..._items];
   List<AppFlowyGroupItem> get items => _items;
 
   @override
