@@ -217,7 +217,6 @@ class _AppFlowyBoardGroupState extends State<AppFlowyBoardGroup> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.green,
       padding: widget.bodyEdgeInsets,
       child: BoardOverlay(
         key: _columnOverlayKey,
