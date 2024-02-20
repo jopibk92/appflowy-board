@@ -84,6 +84,8 @@ class AppFlowyBoardGroup extends StatefulWidget {
 
   final EdgeInsets bodyPadding;
 
+  final EdgeInsets bodyEdgeInsets;
+
   final double cornerRadius;
 
   final Color backgroundColor;
@@ -117,6 +119,7 @@ class AppFlowyBoardGroup extends StatefulWidget {
     this.onDragEnded,
     this.margin = EdgeInsets.zero,
     this.bodyPadding = EdgeInsets.zero,
+    this.bodyEdgeInsets = const EdgeInsets.all(0),
     this.cornerRadius = 0.0,
     this.backgroundColor = Colors.transparent,
     this.stretchGroupHeight = true,
@@ -213,9 +216,13 @@ class _AppFlowyBoardGroupState extends State<AppFlowyBoardGroup> {
 
   @override
   Widget build(BuildContext context) {
-    return BoardOverlay(
-      key: _columnOverlayKey,
-      initialEntries: [_overlayEntry],
+    return Container(
+      color: Colors.green,
+      padding: widget.bodyEdgeInsets,
+      child: BoardOverlay(
+        key: _columnOverlayKey,
+        initialEntries: [_overlayEntry],
+      ),
     );
   }
 

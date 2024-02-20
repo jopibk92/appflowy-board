@@ -43,30 +43,28 @@ class _MultiBoardListExampleState extends State<MultiBoardListExample> {
       ],
     );
 
-    final group3 = AppFlowyGroupData(
-        id: "Pending",
-        name: "Pending",
-        items: <AppFlowyGroupItem>[
-          TextItem("Card 9", 12),
-          RichTextItem(title: "Card 10", subtitle: 'Aug 1, 2020 4:05 PM'),
-          TextItem("Card 11", 12),
-          TextItem("Card 12", 12),
-        ]);
-    final group4 = AppFlowyGroupData(
-        id: "Canceled",
-        name: "Canceled",
-        items: <AppFlowyGroupItem>[
-          TextItem("Card 13", 12),
-          TextItem("Card 14", 12),
-          TextItem("Card 15", 12),
-        ]);
-    final group5 = AppFlowyGroupData(
-        id: "Urgent",
-        name: "Urgent",
-        items: <AppFlowyGroupItem>[
-          TextItem("Card 14", 12),
-          TextItem("Card 15", 12),
-        ]);
+    final group3 = AppFlowyGroupData(id: "Pending", name: "Pending", items: <AppFlowyGroupItem>[
+      TextItem("Card 9", 12),
+      RichTextItem(title: "Card 10", subtitle: 'Aug 1, 2020 4:05 PM'),
+      TextItem("Card 11", 12),
+      TextItem("Card 12", 12),
+      TextItem("Card 11", 12),
+      TextItem("Card 11", 12),
+      TextItem("Card 11", 12),
+      TextItem("Card 11", 12),
+      TextItem("Card 11", 12),
+      TextItem("Card 11", 12),
+      TextItem("Card 11", 12),
+    ]);
+    final group4 = AppFlowyGroupData(id: "Canceled", name: "Canceled", items: <AppFlowyGroupItem>[
+      TextItem("Card 13", 12),
+      TextItem("Card 14", 12),
+      TextItem("Card 15", 12),
+    ]);
+    final group5 = AppFlowyGroupData(id: "Urgent", name: "Urgent", items: <AppFlowyGroupItem>[
+      TextItem("Card 14", 12),
+      TextItem("Card 15", 12),
+    ]);
 
     controller.addGroup(group1);
     controller.addGroup(group2);
@@ -79,12 +77,14 @@ class _MultiBoardListExampleState extends State<MultiBoardListExample> {
 
   @override
   Widget build(BuildContext context) {
-    final config = AppFlowyBoardConfig(
-      boxShadow: [BoxShadow(color: Colors.red, spreadRadius: 1)],
-      groupBackgroundColor: HexColor.fromHex('#F7F8FC'),
-      stretchGroupHeight: false,
-      edgeInsets: EdgeInsets.all(10)
-    );
+    var config = const AppFlowyBoardConfig(
+        boardCornerRadius: 4,
+        groupBackgroundColor: Colors.white,
+        cardMargin: EdgeInsets.symmetric(horizontal: 5),
+        groupBodyPadding: EdgeInsets.symmetric(horizontal: 10),
+        stretchGroupHeight: true,
+        edgeInsets: EdgeInsets.all(5),
+        boxShadow: [BoxShadow(color: Colors.red, spreadRadius: 1)]);
     return AppFlowyBoard(
         controller: controller,
         cardBuilder: (context, group, groupItem) {
@@ -111,12 +111,9 @@ class _MultiBoardListExampleState extends State<MultiBoardListExample> {
             title: SizedBox(
               width: 60,
               child: TextField(
-                controller: TextEditingController()
-                  ..text = columnData.headerData.groupName,
+                controller: TextEditingController()..text = columnData.headerData.groupName,
                 onSubmitted: (val) {
-                  controller
-                      .getGroupController(columnData.headerData.groupId)!
-                      .updateGroupName(val);
+                  controller.getGroupController(columnData.headerData.groupId)!.updateGroupName(val);
                 },
               ),
             ),

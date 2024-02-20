@@ -219,38 +219,35 @@ class _AppFlowyBoardContentState extends State<_AppFlowyBoardContent> {
     super.initState();
     _overlayEntry = BoardOverlayEntry(
       builder: (BuildContext context) {
-        return Padding(
-          padding: widget.config.edgeInsets,
-          child: Stack(
-            alignment: AlignmentDirectional.topStart,
-            children: [
-              if (widget.background != null)
-                Container(
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.circular(widget.config.boardCornerRadius),
-                  ),
-                  child: widget.background,
+        return Stack(
+          alignment: AlignmentDirectional.topStart,
+          children: [
+            if (widget.background != null)
+              Container(
+                clipBehavior: Clip.hardEdge,
+                decoration: BoxDecoration(
+                  borderRadius:
+                      BorderRadius.circular(widget.config.boardCornerRadius),
                 ),
-              ReorderFlex(
-                config: widget.reorderFlexConfig,
-                scrollController: widget.scrollController,
-                onReorder: widget.onReorder,
-                dataSource: widget.dataController,
-                interceptor: OverlappingDragTargetInterceptor(
-                  reorderFlexId: widget.dataController.identifier,
-                  acceptedReorderFlexId: widget.dataController.groupIds,
-                  delegate: widget.delegate,
-                  columnsState: widget.boardState,
-                ),
-                leading: widget.leading,
-                trailing: widget.trailing,
-                groupWidth: widget.groupConstraints.maxWidth,
-                children: _buildColumns(),
+                child: widget.background,
               ),
-            ],
-          ),
+            ReorderFlex(
+              config: widget.reorderFlexConfig,
+              scrollController: widget.scrollController,
+              onReorder: widget.onReorder,
+              dataSource: widget.dataController,
+              interceptor: OverlappingDragTargetInterceptor(
+                reorderFlexId: widget.dataController.identifier,
+                acceptedReorderFlexId: widget.dataController.groupIds,
+                delegate: widget.delegate,
+                columnsState: widget.boardState,
+              ),
+              leading: widget.leading,
+              trailing: widget.trailing,
+              groupWidth: widget.groupConstraints.maxWidth,
+              children: _buildColumns(),
+            ),
+          ],
         );
       },
       opaque: false,
@@ -310,6 +307,7 @@ class _AppFlowyBoardContentState extends State<_AppFlowyBoardContent> {
                       reorderFlexAction: reorderFlexAction,
                       stretchGroupHeight: widget.config.stretchGroupHeight,
                       boxShadow: widget.config.boxShadow,
+                      bodyEdgeInsets: widget.config.edgeInsets,
                       groupWidth: constraints.maxWidth,
                     ),
                   ),
